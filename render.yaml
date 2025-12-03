@@ -1,0 +1,14 @@
+	services:					
+	- type: web					
+	name: qrofid-task-app					
+	env: node
+	plan: starter					
+	buildCommand: "npm install"					
+	startCommand: "npm start"					
+	routes:					
+	- type: web					
+	source: /					
+	destination: http://localhost:5000 
+	customNginx:					
+	enabled: true					
+	file: ./nginx.conf
