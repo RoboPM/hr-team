@@ -7,6 +7,7 @@ export const roomSchema = Joi.object({
   status: Joi.string().valid("Available", "Occupied", "Cleaning").required()
 });
 
+
 //Vehicals validation schema
 
 export const vehicleSchema = Joi.object({
