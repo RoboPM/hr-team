@@ -7,6 +7,8 @@ const vehicleSchema = new mongoose.Schema({
   speed: { type: Number, default: 0 },
   lat: { type: Number, required: true },
   lng: { type: Number, required: true }
-});
+  },
+  { timestamps: true }
+);
 
 export const Vehicle = mongoose.model("Vehicle", vehicleSchema);

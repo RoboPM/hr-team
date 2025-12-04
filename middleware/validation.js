@@ -17,7 +17,8 @@ export const loginSchema = Joi.object({
 //Rooms validation schema
 export const roomSchema = Joi.object({
   id: Joi.number().required(),
-  type: Joi.string().valid("Deluxe", "Suite", "Standard").required(),
+  type: Joi.string().valid("Deluxe", "Suite", "Standard","Superior Room",
+    "Junior Suite","Accessible Room","Presidential Suite","Executive Room","Connecting Rooms","Loft Room").required(),
   status: Joi.string().valid("Available", "Occupied", "Cleaning").required()
 });
 
