@@ -9,12 +9,10 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
     // Validate
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
-
     // Check existing user
     const exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ message: "Email already exists" });
@@ -64,9 +62,9 @@ export const loginUser = async (req, res) => {
 
     // Create JWT token
     const token = jwt.sign(
-      { id: user._id, email: user.email },     // payload
-      process.env.JWT_SECRET,                  // secret key
-      { expiresIn: "7d" }                      // expiry
+      { id: user._id, email: user.email },     
+      process.env.JWT_SECRET,                  
+      { expiresIn: "7d" }
     );
 
     res.status(200).json({
@@ -202,6 +200,7 @@ export const getVehicles = async (req, res) => {
   try {
     const vehicles = await Vehicle.find();
     res.status(200).json(vehicles);
+    
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
