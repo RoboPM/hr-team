@@ -1,4 +1,3 @@
-
 import Joi from "joi";
 
 // REGISTER Validation
@@ -14,17 +13,41 @@ export const loginSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).max(50).required()});
 
+
 //Rooms validation schema
 export const roomSchema = Joi.object({
   id: Joi.number().required(),
-  type: Joi.string().valid("Deluxe", "Suite", "Standard","Superior Room",
-    "Junior Suite","Accessible Room","Presidential Suite","Executive Room","Connecting Rooms","Loft Room").required(),
-  status: Joi.string().valid("Available", "Occupied", "Cleaning").required()
+
+  type: Joi.string().valid(
+    "Deluxe",
+    "Suite",
+    "Standard",
+    "Superior Room",
+    "Junior Suite",
+    "Accessible Room",
+    "Presidential Suite",
+    "Executive Room",
+    "Connecting Rooms",
+    "Loft Room"
+  ).required(),
+
+  status: Joi.string()
+    .valid("Available", "Occupied", "Cleaning")
+    .required(),
+
+  guests: Joi.array()
+    .items(
+      Joi.object({
+        name: Joi.string().required(),
+        phone: Joi.string().required().pattern(/^[0-9]{10}$/).message("Phone must be 10 digits")
+      })
+    )
+    .min(2)            
+    .required()         
 });
 
 
 //Vehicals validation schema
-
 export const vehicleSchema = Joi.object({
   id: Joi.string().required(),
   driver: Joi.string().required(),
